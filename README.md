@@ -29,11 +29,45 @@
     pip install -r requirements.txt
     ```
 
+5. Export AIRFLOW_HOME to the current directory.
 
+    ```
+    export AIRFLOW_HOME=$(pwd)/airflow
+    ```
 
+6. Initialize the database.
 
+    ```
+    airflow db init
+    ```
 
-pip install "apache-airflow[celery]==2.2.5" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.2.5/constraints-3.9.txt"
+7. Create a user.
+
+    ```
+    airflow users create \
+        --username admin \
+        --password admin \
+        --firstname admin \
+        --lastname admin \
+        --role Admin \
+        --email admin@gmail.com
+    ```
+
+## Running the Webserver and Scheduler
+
+1. Open two new terminals. In each, activate the venv and export AIRFLOW_HOME. Start the scheduler and webserver.
+
+    ```
+    # Terminal 1
+    source .venv/bin/activate
+    export AIRFLOW_HOME=$(pwd)/airflow
+    airflow scheduler
+
+    # Terminal 2
+    source .venv/bin/activate
+    export AIRFLOW_HOME=$(pwd)/airflow
+    airflow webserver
+    ```
 
 ## Requirements
 
@@ -46,6 +80,3 @@ Setting up the proper python environment.
     ```
     sudo apt-get install python3.9-dev python3.9-venv
     ```
-
-# Setup a virtual environment with a specific version of python
-
